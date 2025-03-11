@@ -1,18 +1,29 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { Banner, Head } from 'nextra/components'
+import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 
 export const metadata = {
-  // Define your metadata here
-  // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+  title: {
+    absolute: '',
+    template: '%s - にじてくと'
+  }
 }
 
 const banner = <Banner storageKey="some-key">Nextra 4.0 is released 🎉</Banner>
 const navbar = (
   <Navbar
     logo={<b>にじてくと</b>}
+
   // ... Your additional navbar options
+  />
+)
+const search = (
+  <Search
+    emptyResult={"見つかりませんでした。"}
+    loading={"読み込み中…"}
+    errorText={"検索に失敗しました"}
+    placeholder={"サイト内検索"}
   />
 )
 const footer = <Footer>&copy; {new Date().getFullYear()} NIJITECT.</Footer>
@@ -39,6 +50,8 @@ export default async function RootLayout({ children }) {
           docsRepositoryBase="https://github.com/terminal98/docs.t98.info"
           footer={footer}
           editLink={null}
+          feedback={{ content: "フィードバック" }}
+          search={search}
         // ... Your additional layout options
         >
           {children}
